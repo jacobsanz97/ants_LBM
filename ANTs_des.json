@@ -1,0 +1,71 @@
+{
+  "name": "ANTsSeg",
+  "author": "Jacob",
+  "tool-version": "v2.5.3",
+  "description": "A script for brain segmentation, comprised of: brain extraction, registration, and atlas label warping using ANTs.",
+  "command-line": "[[NIPOPPY_CONTAINER_COMMAND]] [[NIPOPPY_FPATH_CONTAINER]] ANTsSeg.sh --t1 [INPUT_T1] --template [INPUT_TEMPLATE] --probability-mask [INPUT_PROB_MASK] --registration-mask [INPUT_REG_MASK] --atlas [INPUT_ATLAS] --reference [INPUT_REFERENCE] --output [OUTPUT_DIR]",
+    "container-image": {
+        "index": "docker://",
+        "image": "antsx/ants:v2.5.3",
+        "type": "singularity"
+    },
+  "schema-version": "0.5",
+  "inputs": [
+    {
+      "id": "INPUT_T1",
+      "name": "T1-weighted Image",
+      "type": "File",
+      "value-key": "[INPUT_T1]",
+      "description": "Path to the T1-weighted image file (e.g., PPMI_3106_MPRAGE_GRAPPA.nii.gz)",
+      "command-line-flag": "--t1"
+    },
+    {
+      "id": "INPUT_TEMPLATE",
+      "name": "Template Image",
+      "type": "File",
+      "value-key": "[INPUT_TEMPLATE]",
+      "description": "Path to the template image file (e.g., T_template0.nii.gz)",
+      "command-line-flag": "--template"
+    },
+    {
+      "id": "INPUT_PROB_MASK",
+      "name": "Probability Mask",
+      "type": "File",
+      "value-key": "[INPUT_PROB_MASK]",
+      "description": "Path to the probability mask file (e.g., T_template0_BrainCerebellumProbabilityMask.nii.gz)",
+      "command-line-flag": "--probability-mask"
+    },
+    {
+      "id": "INPUT_REG_MASK",
+      "name": "Registration Mask",
+      "type": "File",
+      "value-key": "[INPUT_REG_MASK]",
+      "description": "Path to the registration mask file (e.g., T_template0_BrainCerebellumRegistrationMask.nii.gz)",
+      "command-line-flag": "--registration-mask"
+    },
+    {
+      "id": "INPUT_ATLAS",
+      "name": "Atlas File",
+      "type": "File",
+      "value-key": "[INPUT_ATLAS]",
+      "description": "Path to the atlas file (e.g., HarvardOxford-sub-maxprob-thr25-1mm.nii.gz)",
+      "command-line-flag": "--atlas"
+    },
+    {
+      "id": "INPUT_REFERENCE",
+      "name": "Reference Image",
+      "type": "File",
+      "value-key": "[INPUT_REFERENCE]",
+      "description": "Path to the reference image file (e.g., MNI152_T1_2mm_brain.nii.gz)",
+      "command-line-flag": "--reference"
+    },
+    {
+      "id": "OUTPUT_DIR",
+      "name": "Output Directory",
+      "type": "String",
+      "value-key": "[OUTPUT_DIR]",
+      "description": "Directory where the output files will be saved",
+      "command-line-flag": "--output"
+    }
+  ]
+}
